@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
     '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
     '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-    '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+    '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;' +
     ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     concat: {
@@ -89,13 +89,12 @@ module.exports = function (grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-bower-task');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function () {
     // log输出测试
