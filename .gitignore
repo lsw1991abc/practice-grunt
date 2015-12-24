@@ -3,4 +3,5 @@
 /*.iml
 /bower_components/
 /node_modules/
-/public/
+/src/js/lib/
+/dist/

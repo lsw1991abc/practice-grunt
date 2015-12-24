@@ -1,8 +1,15 @@
 /*global module:false*/
 module.exports = function (grunt) {
+  'use strict';
+
+  var config = {
+    src: 'src',
+    test: 'test'
+  };
 
   // Project configuration.
   grunt.initConfig({
+    config: config,
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -17,8 +24,8 @@ module.exports = function (grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
+        src: ['<%= config.src %>/js/*.js'],
+        dest: 'dist/lib/<%= pkg.name %>.js'
       }
     },
     uglify: {
@@ -27,7 +34,7 @@ module.exports = function (grunt) {
       },
       dist: {
         src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
+        dest: 'dist/lib/<%= pkg.name %>.min.js'
       }
     },
     jshint: {
@@ -69,7 +76,7 @@ module.exports = function (grunt) {
     "bower": {
       "install": {
         "options": {
-          "targetDir": "./public/js/lib",
+          "targetDir": "<%=config.src %>/js/lib",
           "layout": "byComponent",
           "install": true,
           "verbose": false,
@@ -89,5 +96,10 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+
+  grunt.registerTask('serve', 'Compile then start a connect web server', function () {
+    // log输出测试
+    grunt.log.writeln('Logging some stuff...').ok();
+  });
 
 };
