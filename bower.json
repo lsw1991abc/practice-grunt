@@ -1,0 +1,26 @@
+{
+  "name": "practice-grunt",
+  "description": "Grunt 练习",
+  "main": "Gruntfile.js",
+  "authors": [
+    "lsw1991abc@gmail.com"
+  ],
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "Grunt"
+  ],
+  "homepage": "https://github.com/lsw1991abc/practice-grunt",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#~1.4.8",
+    "jquery": "~2.1.4",
+    "requirejs": "~2.1.22"
+  }
+}
