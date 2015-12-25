@@ -7,6 +7,14 @@ module.exports = function (grunt) {
     test: 'test'
   };
 
+  // 有了这个可以不用写一堆的 grunt.loadNpmTasks('xxx') ，
+  // 再多的任务只需要写一个 require('load-grunt-tasks')(grunt)
+  // Load grunt tasks automatically
+  require('load-grunt-tasks')(grunt);
+
+  // Time how long tasks take. Can help when optimizing build times
+  require('time-grunt')(grunt);
+
   // Project configuration.
   grunt.initConfig({
     config: config,
@@ -73,25 +81,29 @@ module.exports = function (grunt) {
         tasks: ['jshint:lib_test', 'qunit']
       }
     },
-    "bower": {
-      "install": {
-        "options": {
-          "targetDir": "<%=config.src %>/js/lib",
-          "layout": "byComponent",
-          "install": true,
-          "verbose": false,
-          "cleanTargetDir": false
+    bower: {
+      install: {
+        options: {
+          targetDir: '<%=config.src %>/js/lib',
+          layout: 'byComponent',
+          install: true,
+          verbose: false,
+          cleanTargetDir: false
+        }
+      }
+    },
+    connect: {
+      server: {
+        options: {
+          hostname: 'localhost',
+          port: 8000,
+          base: ['src/'],
+          keepalive: true,
+          open: 'http://localhost:8000'
         }
       }
     }
   });
-
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-bower-task');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
@@ -100,5 +112,7 @@ module.exports = function (grunt) {
     // log输出测试
     grunt.log.writeln('Logging some stuff...').ok();
   });
+
+  grunt.registerTask('server', ['connect']);
 
 };
