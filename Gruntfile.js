@@ -97,6 +97,15 @@ module.exports = function (grunt) {
         options: {
           hostname: 'localhost',
           port: 8000,
+          base: ['dist/'],
+          keepalive: true,
+          open: 'http://localhost:8000'
+        }
+      },
+      test: {
+        options: {
+          hostname: 'localhost',
+          port: 8000,
           base: ['src/'],
           keepalive: true,
           open: 'http://localhost:8000'
@@ -113,6 +122,7 @@ module.exports = function (grunt) {
     grunt.log.writeln('Logging some stuff...').ok();
   });
 
-  grunt.registerTask('server', ['connect']);
+  grunt.registerTask('server', ['connect:server']);
+  grunt.registerTask('server:test', ['connect:test']);
 
 };
