@@ -3,20 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link rel="stylesheet" href="./bootstrap-3.3.5/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../bootstrap-3.3.5/dist/css/bootstrap.min.css" />
 </head>
 <body>
 <div ng-app="login" ng-controller="loginController">
   名字: <input ng-model="name">{{name}}
 </div>
 
-<script src="./angular-1.5.5/angular.min.js"></script>
-<script src="./angular-1.5.5/angular-route.min.js"></script>
+<script src="../angular-1.5.5/angular.min.js"></script>
+<script src="../angular-1.5.5/angular-route.min.js"></script>
 <script>
   var login = angular.module('login', []);
   login.controller('loginController', function($scope) {
     $scope.name = "John Doe";
   });
+
+  var date = new Date();
+  console.log(date.getDay() + 1);
+  console.log(date.getDate());
 </script>
 </body>
 </html>
